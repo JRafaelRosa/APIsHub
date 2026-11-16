@@ -8,12 +8,12 @@ O **APIHub** é um gateway centralizador destinado a desenvolvedores e equipes d
 
 ## Equipe
 
-| Nome Completo | GitHub | O que cobre bem | Papel | Justificativa da Escolha |
-| :--- | :--- | :--- | :--- | :--- |
-| Pessoa 1 | @usuario1 | Programar, negociar | Arquiteto Técnico | Possui experiência prévia com desenvolvimento backend e definição de arquiteturas de serviços de rede. |
-| Pessoa 2 | @usuario2 | Negociar, documentar | Product Owner | Tem facilidade em traduzir necessidades de uso em requisitos claros e priorizar entregas de valor. |
-| Pessoa 3 | @usuario3 | Programar, testar | Scrum Master | Organiza o fluxo de tarefas do time, acompanha impedimentos e garante a disciplina de testes e prazos. |
-| Pessoa 4 | @usuario4 | Testar, documentar | Desenvolvedor / QA | Perfil analítico focado na escrita de casos de teste automatizados e manutenção da documentação técnica. |
+| Nome Completo | GitHub       | O que cobre bem | Papel | Justificativa da Escolha |
+|:--------------|:-------------| :--- | :--- | :--- |
+| João Rafael   | @JRafaelRosa | Programar, negociar | Arquiteto Técnico | Possui experiência prévia com desenvolvimento backend e definição de arquiteturas de serviços de rede. |
+| Pessoa 2      | @usuario2    | Negociar, documentar | Product Owner | Tem facilidade em traduzir necessidades de uso em requisitos claros e priorizar entregas de valor. |
+| Pessoa 3      | @usuario3    | Programar, testar | Scrum Master | Organiza o fluxo de tarefas do time, acompanha impedimentos e garante a disciplina de testes e prazos. |
+| Pessoa 4      | @usuario4    | Testar, documentar | Desenvolvedor / QA | Perfil analítico focado na escrita de casos de teste automatizados e manutenção da documentação técnica. |
 
 *(Nota: Todas as 4 competências — negociar, programar, testar e documentar — estão cobertas de forma redundante pelos integrantes do grupo).*
 
