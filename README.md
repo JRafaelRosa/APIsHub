@@ -15,7 +15,6 @@ O **APIHub** é um gateway centralizador destinado a desenvolvedores e equipes d
 | Vitor Hertal  | @UEPGVHI     | Programar, testar | Scrum Master | Organiza o fluxo de tarefas do time, acompanha impedimentos e garante a disciplina de testes e prazos. |
 | Pessoa 4      | @usuario4    | Testar, documentar | Desenvolvedor / QA | Perfil analítico focado na escrita de casos de teste automatizados e manutenção da documentação técnica. |
 
-*(Nota: Todas as 4 competências — negociar, programar, testar e documentar — estão cobertas de forma redundante pelos integrantes do grupo).*
 
 ## Definição de Pronto
 Para que qualquer história ou tarefa seja considerada concluída e integrada à branch principal (`main`), ela deve cumprir todos os itens abaixo:
