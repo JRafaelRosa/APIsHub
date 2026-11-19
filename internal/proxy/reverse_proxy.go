@@ -11,20 +11,23 @@ import (
 	"time"
 
 	"github.com/usuario/apishub/internal/domain"
-	"github.com/usuario/apishub/internal/service"
 )
 
 const defaultTimeout = 5 * time.Second
 
 // ReverseProxyAdapter encaminha requisições mascaradas para APIs externas.
 type ReverseProxyAdapter struct {
-	routeService service.RouteService
+	routeService routeResolver
 	proxy        *httputil.ReverseProxy
 	timeout      time.Duration
 }
 
+type routeResolver interface {
+	ObterPorSlug(ctx context.Context, slug string) (*domain.APIRoute, error)
+}
+
 // NewReverseProxyAdapter cria um adaptador. Timeout <= 0 usa o padrão de 5 segundos.
-func NewReverseProxyAdapter(routeService service.RouteService, timeout time.Duration) *ReverseProxyAdapter {
+func NewReverseProxyAdapter(routeService routeResolver, timeout time.Duration) *ReverseProxyAdapter {
 	if timeout <= 0 {
 		timeout = defaultTimeout
 	}
