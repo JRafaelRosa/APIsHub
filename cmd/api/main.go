@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"log/slog"
 	"net/http"
 	"os"
 
@@ -23,13 +23,18 @@ func main() {
 	repository := repository.NewMemoryRouteRepository()
 	routeService := service.NewRouteService(repository)
 	reverseProxy := proxy.NewReverseProxyAdapter(routeService, 0)
+	routeHandler := handler.NewRouteHandler(routeService)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", handler.HealthHandler)
+	mux.HandleFunc("/", handler.WebHandler)
+	mux.HandleFunc("GET /api/catalogo", routeHandler.Catalogo)
+	mux.Handle("/api/rotas/", routeHandler)
+	mux.Handle("/api/rotas", routeHandler)
 	mux.Handle("/apihub/", reverseProxy)
 
-	log.Printf("servidor iniciado em %s", porta)
-	if err := http.ListenAndServe(porta, mux); err != nil {
-		log.Fatal(err)
+	slog.Info("servidor iniciado", "porta", porta)
+	if err := http.ListenAndServe(porta, handler.LoggingMiddleware(mux)); err != nil {
+		slog.Error("servidor encerrado", "erro", err)
 	}
 }
