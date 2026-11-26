@@ -41,6 +41,29 @@ func (s *routeServiceStub) ObterPorSlug(ctx context.Context, slug string) (*doma
 	return rota, nil
 }
 
+func (s *routeServiceStub) AtualizarURL(ctx context.Context, slug string, novaURL string) (*domain.APIRoute, error) {
+	if err := ctx.Err(); err != nil {
+		return nil, err
+	}
+	rota, existe := s.routes[slug]
+	if !existe {
+		return nil, domain.ErrRotaNaoEncontrada
+	}
+	rota.URLOriginal = novaURL
+	return rota, nil
+}
+
+func (s *routeServiceStub) Remover(ctx context.Context, slug string) error {
+	if err := ctx.Err(); err != nil {
+		return err
+	}
+	if _, existe := s.routes[slug]; !existe {
+		return domain.ErrRotaNaoEncontrada
+	}
+	delete(s.routes, slug)
+	return nil
+}
+
 func novoProxy(t *testing.T, routes map[string]*domain.APIRoute, timeout time.Duration) http.Handler {
 	t.Helper()
 	adapter := NewReverseProxyAdapter(&routeServiceStub{routes: routes}, timeout)
