@@ -26,10 +26,11 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", handler.HealthHandler)
+	handler.RegisterRouteHandlers(mux, routeService)
 	mux.Handle("/apihub/", reverseProxy)
 
 	log.Printf("servidor iniciado em %s", porta)
-	if err := http.ListenAndServe(porta, mux); err != nil {
+	if err := http.ListenAndServe(porta, handler.LoggingMiddleware(mux)); err != nil {
 		log.Fatal(err)
 	}
 }
