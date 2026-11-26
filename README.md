@@ -25,8 +25,7 @@ Para que qualquer história ou tarefa seja considerada concluída e integrada à
 5. O Pull Request foi revisado e aprovado manualmente por pelo menos um integrante humano diferente do autor.
 6. A estrutura do código respeita rigorosamente a separação de camadas definida no `ADR-001`.
 7. Qualquer uso de agente de IA na tarefa foi registrado no arquivo `docs/registro-ia.md`.
-<<<<<<< Updated upstream
-=======
+
 ## Como Executar e Testar o APIsHub
 
 ### Pré-requisitos
@@ -39,4 +38,3 @@ go build -o apishub ./cmd/api
 
 # Executar na porta padrão (:8080) ou customizada via variável PORT
 PORT=8080 ./apishub
->>>>>>> Stashed changes

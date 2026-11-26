@@ -13,11 +13,11 @@ var (
 
 // APIRoute representa os metadados de uma API cadastrada no APIHub.
 type APIRoute struct {
-	ID          string    `json:"id"`
-	Nome        string    `json:"nome"`
-	Descricao   string    `json:"descricao"`
-	Slug        string    `json:"slug"`
-	URLOriginal string    `json:"url_original"`
-	Ativa       bool      `json:"ativa"`
-	CriadaEm    time.Time `json:"criada_em"`
+	ID          string
+	Nome        string
+	Descricao   string
+	Slug        string
+	URLOriginal string
+	Ativa       bool
+	CriadaEm    time.Time
 }

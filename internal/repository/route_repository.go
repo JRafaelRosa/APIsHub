@@ -12,9 +12,6 @@ type RouteRepository interface {
 	Criar(ctx context.Context, rota *domain.APIRoute) error
 	ObterPorID(ctx context.Context, id string) (*domain.APIRoute, error)
 	ObterPorSlug(ctx context.Context, slug string) (*domain.APIRoute, error)
-	Listar(ctx context.Context) ([]*domain.APIRoute, error)
-	AtualizarURL(ctx context.Context, slug string, novaURL string) (*domain.APIRoute, error)
-	Remover(ctx context.Context, slug string) error
 }
 
 // MemoryRouteRepository mantém rotas em memória com acesso protegido por mutex.
@@ -74,52 +71,4 @@ func (r *MemoryRouteRepository) ObterPorSlug(ctx context.Context, slug string) (
 		}
 	}
 	return nil, domain.ErrRotaNaoEncontrada
-}
-
-func (r *MemoryRouteRepository) Listar(ctx context.Context) ([]*domain.APIRoute, error) {
-	if err := ctx.Err(); err != nil {
-		return nil, err
-	}
-	r.mu.RLock()
-	defer r.mu.RUnlock()
-
-	rotas := make([]*domain.APIRoute, 0, len(r.routes))
-	for _, rota := range r.routes {
-		copia := *rota
-		rotas = append(rotas, &copia)
-	}
-	return rotas, nil
-}
-
-func (r *MemoryRouteRepository) AtualizarURL(ctx context.Context, slug string, novaURL string) (*domain.APIRoute, error) {
-	if err := ctx.Err(); err != nil {
-		return nil, err
-	}
-	r.mu.Lock()
-	defer r.mu.Unlock()
-
-	for _, rota := range r.routes {
-		if rota.Slug == slug {
-			rota.URLOriginal = novaURL
-			copia := *rota
-			return &copia, nil
-		}
-	}
-	return nil, domain.ErrRotaNaoEncontrada
-}
-
-func (r *MemoryRouteRepository) Remover(ctx context.Context, slug string) error {
-	if err := ctx.Err(); err != nil {
-		return err
-	}
-	r.mu.Lock()
-	defer r.mu.Unlock()
-
-	for id, rota := range r.routes {
-		if rota.Slug == slug {
-			delete(r.routes, id)
-			return nil
-		}
-	}
-	return domain.ErrRotaNaoEncontrada
 }
